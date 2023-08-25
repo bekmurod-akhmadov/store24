@@ -8,20 +8,22 @@
 use yii\helpers\Html;
 
 $this->title = $name;
+
 ?>
-<div class="site-error">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
+<div class="error404">
+    <div class="info-404">
+        <h2 class="title">404!</h2>
+        <p class="lead error-text">Oops! That page can’t be found.</p>
+        <p class="lead">Nothing was found at this location. Try searching, or check out the links below.</p>
+        <div class="sub-form-row">
+            <div class="widget woocommerce widget_product_search">
+                <form class="search-form">
+                    <input type="text" placeholder="Search products...">
+                    <button class="button" type="button">Search</button>
+                </form>
+            </div>
+        </div>
     </div>
-
-    <p>
-        The above error occurred while the Web server was processing your request.
-    </p>
-    <p>
-        Please contact us if you think this is a server error. Thank you.
-    </p>
-
+    <!-- .sub-form-row -->
 </div>
+<!-- .error404 -->
