@@ -1,5 +1,6 @@
 <?php
 
+use common\models\ProductChar;
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
@@ -13,6 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'chars' => (empty($chars)) ? [new ProductChar()] : $chars,
     ]) ?>
 
 </div>

@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var common\models\CategorySearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Categories';
+$this->title = 'Kategoriyalar';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -28,19 +28,26 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="dataTables_wrapper no-footer" id="DataTables_Table_0_wrapper">
                 <div class="category-index">
    
-                                                                <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+                    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
                                         
-                                            <?= GridView::widget([
-                            'dataProvider' => $dataProvider,
+                    <?= GridView::widget([
+                        'dataProvider' => $dataProvider,
                             'filterModel' => $searchModel,
-        'columns' => [
+                            'columns' => [
                                 ['class' => 'yii\grid\SerialColumn'],
-                    
-                    'id',
-'parent_id',
-'name',
-'image',
-'status',
+
+//                                'id',
+//                                'parent_id',
+                                'name',
+                                [
+                                    'attribute' => 'image',
+                                    'value' => function($model){
+                                        $image = \common\components\StaticFunctions::getImage($model , 'category' , 'image');
+                                        return "<img src='$image' style='width:100px;height: 80px;object-fit:cover'>";
+                                    },
+                                    'format' => 'HTML',
+                                ],
+//                                'status',
                                 [
                                     'class' => ActionColumn::className(),
                                     'template' => '{view} {update} {delete}',

@@ -5,7 +5,7 @@
 $this->title = 'My Store';
 ?>
 <?=\frontend\widgets\MainSlider::widget()?>
-<?=\frontend\widgets\SectionDeals::widget()?>
+<?//=\frontend\widgets\SectionDeals::widget()?>
 <?=\frontend\widgets\Categories::widget()?>
 <?=\frontend\widgets\BestSeller::widget()?>
 <?=\frontend\widgets\Advertise::widget()?>

@@ -42,10 +42,25 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'parent_id' => 'Parent ID',
-            'name' => 'Name',
-            'image' => 'Image',
+            'parent_id' => 'Parent',
+            'name' => 'Kategoriya nomi',
+            'image' => 'Rasm',
             'status' => 'Status',
         ];
+    }
+
+    public function getCategories()
+    {
+        return self::find()->where(['parent_id' => NULL])->all();
+    }
+
+    public function getChildCategory()
+    {
+        return $this->hasMany(self::className() , ['parent_id' => 'id'])->all();
+    }
+
+    public function getChildCount()
+    {
+        return $this->hasMany(self::className() , ['parent_id' => 'id'])->count();
     }
 }

@@ -31,13 +31,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'description',
             'body:ntext',
-            'image',
             'category_id',
             'brand_id',
             'sku',
             'price',
             'discount',
-            'status'
+            'status',
+            [
+                'attribute' => 'image',
+                'value' => function($model){
+                    $image = \common\components\StaticFunctions::getImage($model , 'product' , 'image');
+                    return "<img src='$image' style='width:100px;height: 80px;object-fit:cover'>";
+                },
+                'format' => 'HTML',
+            ],
         ],
     ]) ?>
 

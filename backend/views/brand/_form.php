@@ -10,25 +10,24 @@ use yii\widgets\ActiveForm;
 
 <div class="brand-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = \yii\bootstrap5\ActiveForm::begin(); ?>
 
     <div class="card">
         <div class="card-body">
 
-    
+            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'logo')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'logo')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'short_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'short_name')->textInput(['maxlength' => true]) ?>
+            <div class="form-group">
+                <?= Html::submitButton('Saqlash', ['class' => 'btn-fill-lg bg-blue-dark']) ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Saqlash', ['class' => 'btn-fill-lg bg-blue-dark']) ?>
-    </div>
+            </div>
         </div>
     </div>
 
-    <?php ActiveForm::end(); ?>
+    <?php \yii\bootstrap5\ActiveForm::end(); ?>
 
 </div>
