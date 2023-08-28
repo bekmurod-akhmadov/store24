@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /** @var common\models\Category $model */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Kategoriyalar', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -30,8 +30,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'parent_id',
             'name',
-            'image',
             'status',
+            [
+                'attribute' => 'image',
+                'value' => function($model){
+                    $image = \common\components\StaticFunctions::getImage($model , 'category' , 'image');
+                    return "<img src='$image' style='width:100px;height: 80px;object-fit:cover'>";
+                },
+                'format' => 'HTML',
+            ],
+
         ],
     ]) ?>
 

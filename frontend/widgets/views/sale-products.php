@@ -2,12 +2,6 @@
     <div class="section-products-carousel-tabs-wrap">
         <header class="section-header">
             <h2 class="section-title">Sale products</h2>
-            <ul role="tablist" class="nav justify-content-end">
-                <li class="nav-item"><a class="nav-link active" href="#tab-59f89f08825d50" data-toggle="tab">Top 20</a></li>
-                <li class="nav-item"><a class="nav-link " href="#tab-59f89f08825d51" data-toggle="tab">Audio &amp; Video</a></li>
-                <li class="nav-item"><a class="nav-link " href="#tab-59f89f08825d52" data-toggle="tab">Laptops &amp; Computers</a></li>
-                <li class="nav-item"><a class="nav-link " href="#tab-59f89f08825d53" data-toggle="tab">Video Cameras</a></li>
-            </ul>
         </header>
         <!-- .section-header -->
         <div class="tab-content">

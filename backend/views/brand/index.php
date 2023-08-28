@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var common\models\BrandSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Brands';
+$this->title = 'Brandlar';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

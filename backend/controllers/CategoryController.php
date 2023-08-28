@@ -2,11 +2,13 @@
 
 namespace backend\controllers;
 
+use common\components\StaticFunctions;
 use common\models\Category;
 use common\models\CategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * CategoryController implements the CRUD actions for Category model.
@@ -71,7 +73,15 @@ class CategoryController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                $image = UploadedFile::getInstance($model , 'image');
+                if ($image){
+                    $model->image = StaticFunctions::saveImage($image , $model->id , 'category');
+                    $model->save();
+                }
+                if ($model->save()){
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+
             }
         } else {
             $model->loadDefaultValues();
@@ -92,9 +102,20 @@ class CategoryController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $oldImage = $model->image;
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $image = UploadedFile::getInstance($model , 'image');
+            if ($image){
+                $model->image = StaticFunctions::saveImage($image , $model->id , 'category');
+                StaticFunctions::deleteImage($oldImage , $model->image , 'category');
+            }else{
+                $model->image = $oldImage;
+            }
+            if ($model->save()){
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+
         }
 
         return $this->render('update', [
@@ -111,7 +132,12 @@ class CategoryController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $image = $model->image;
+        $model->delete();
+        if ($model->delete()){
+            StaticFunctions::deleteImage($image , $id , 'category');
+        }
 
         return $this->redirect(['index']);
     }

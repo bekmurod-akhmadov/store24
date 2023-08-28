@@ -40,9 +40,14 @@ class Brand extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'logo' => 'Logo',
-            'short_name' => 'Short Name',
+            'name' => 'Nomi',
+            'logo' => 'Logitp',
+            'short_name' => 'Qisqa nomi',
         ];
+    }
+
+    public function getProducts()
+    {
+        return $this->hasMany(Product::className() , ['brand_id' => 'id']);
     }
 }

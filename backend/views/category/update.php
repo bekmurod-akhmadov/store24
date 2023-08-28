@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /** @var common\models\Category $model */
 
 $this->title = 'Update Category: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Kategoriyalar', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Tahrirlash';
 ?>

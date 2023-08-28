@@ -10,12 +10,13 @@ ol.breadcrumb .active{
     color: #fea801;
 }
 
-.sidebar-menu-one{
-    height:100vh;
-}
+/*.sidebar-menu-one{*/
+/*    height:100vh;*/
+/*}*/
 
 .site-error .image_block .error_404{
     width:1000px;
     height:400px;
     object-fit:cover;
 }
+
