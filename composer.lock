@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a346ad8bf9d49d6bca92fb90b01733f0",
+    "content-hash": "a50f8b23282da37dd22d30180113556f",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -5672,7 +5672,7 @@
         },
         {
             "name": "wbraganca/yii2-dynamicform",
-            "version": "dev-master",
+            "version": "v2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wbraganca/yii2-dynamicform.git",
@@ -5689,7 +5689,6 @@
                 "symfony/dom-crawler": "~2.8|~3.0",
                 "yiisoft/yii2": "~2.0.5"
             },
-            "default-branch": true,
             "type": "yii2-extension",
             "autoload": {
                 "psr-4": {
@@ -5989,8 +5988,7 @@
     "stability-flags": {
         "kartik-v/yii2-widget-select2": 20,
         "kartik-v/yii2-widget-switchinput": 20,
-        "kartik-v/yii2-widget-fileinput": 20,
-        "wbraganca/yii2-dynamicform": 20
+        "kartik-v/yii2-widget-fileinput": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
