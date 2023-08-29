@@ -21,7 +21,7 @@ class AppAsset extends AssetBundle
         "/css/fullcalendar.min.css",
         "/css/animate.min.css",
         "/css/style.css",
-        "/css/custom.css",
+//        "/css/custom.css",
     ];
     public $js = [
         "js/modernizr-3.6.0.min.js",

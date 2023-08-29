@@ -22,7 +22,7 @@ AppAsset2::register($this);
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?php $this->registerCsrfMetaTags() ?>
-        <link rel="shortcut icon" type="image/x-icon" href=".img/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.png">
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
     </head>

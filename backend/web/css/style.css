@@ -5146,5 +5146,23 @@ ol.breadcrumb .active{
     object-fit: cover;"
 }
 
+ol.breadcrumb{
+  background:none;
+}
 
+ol.breadcrumb li,ol.breadcrumb li a{
+  font-size: 16px;
+}
+
+ol.breadcrumb .active{
+  color: #fea801;
+}
+
+
+
+.site-error .image_block .error_404{
+  width:1000px;
+  height:400px;
+  object-fit:cover;
+}
 
