@@ -2,8 +2,13 @@
 
 namespace backend\controllers;
 
+use app\models\Student;
+use common\models\Group;
 use common\models\LoginForm;
+use common\models\Payment;
+use common\models\Teacher;
 use Yii;
+use yii\db\Query;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -17,6 +22,7 @@ class SiteController extends Controller
     /**
      * {@inheritdoc}
      */
+
     public function behaviors()
     {
         return [
@@ -62,6 +68,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+
+
         return $this->render('index');
     }
 

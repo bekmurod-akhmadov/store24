@@ -84,7 +84,7 @@
 
 // General variable structure
 //
-// Variable format should follow the `$component-modifier-state-property` order.
+// Variable format should follow the `$components-modifier-state-property` order.
 
 
 // Colors
@@ -337,7 +337,7 @@ $transition-collapse:    height .35s ease !default;
 
 // Tables
 //
-// Customizes the `.table` component with basic values, each used across all table variations.
+// Customizes the `.table` components with basic values, each used across all table variations.
 
 $table-cell-padding:            .75rem !default;
 $table-sm-cell-padding:         .3rem !default;

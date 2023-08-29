@@ -7,6 +7,7 @@ $params = array_merge(
 );
 
 return [
+    'language' => 'uz_UZ',
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
