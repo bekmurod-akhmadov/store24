@@ -27,6 +27,10 @@
             </li>
 
             <li class="nav-item">
+                <a href="<?=\yii\helpers\Url::to(['/menu/index'])?>" class="nav-link"><i class="fas fa-bars"></i><span>Menular</span></a>
+            </li>
+
+            <li class="nav-item">
                 <a href="<?=\yii\helpers\Url::to(['/testimonial/index'])?>" class="nav-link"><i class="fas fa-comment"></i><span>Izohlar</span></a>
             </li>
 
