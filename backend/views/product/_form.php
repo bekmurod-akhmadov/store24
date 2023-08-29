@@ -11,7 +11,6 @@ use yii\widgets\ActiveForm;
 /** @var yii\web\View $this */
 /** @var common\models\Product $model */
 /** @var yii\widgets\ActiveForm $form */
-/** @var yii\widgets\ActiveForm $chars */
 $js = '
 jQuery(".dynamicform_wrapper").on("afterInsert", function(e, item) {
     jQuery(".dynamicform_wrapper .panel-title-address").each(function(index) {
@@ -83,7 +82,7 @@ $this->registerCss($css);
                             'model' => $chars[0],
                             'formId' => 'w0',
                             'formFields' => [
-                                'atttribute',
+                                'attribute',
                                 'value'
                             ],
                         ]); ?>
@@ -99,14 +98,17 @@ $this->registerCss($css);
                                     </div>
                                     <div class="panel-body">
                                         <?php
+
                                         // necessary for update action.
                                         if (! $char->isNewRecord) {
                                             echo Html::activeHiddenInput($char, "[{$i}]id");
                                         }
                                         ?>
+
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <?= $form->field($char, "[{$i}]atttribute")->textInput(['maxlength' => true]) ?>
+                                                <?= $form->field($char, "[{$i}]attribute")->textInput(['maxlength' => true]) ?>
+
                                             </div>
                                             <div class="col-sm-6">
                                                 <?= $form->field($char, "[{$i}]value")->textInput(['maxlength' => true]) ?>
@@ -118,7 +120,6 @@ $this->registerCss($css);
                             <?php endforeach; ?>
                         </div>
                         <?php DynamicFormWidget::end(); ?>
-                        <?php echo "Asd";die();?>
                     </div>
 
                 </div>
