@@ -11,6 +11,7 @@ use yii\widgets\ActiveForm;
 /** @var yii\web\View $this */
 /** @var common\models\Product $model */
 /** @var yii\widgets\ActiveForm $form */
+/** @var yii\widgets\ActiveForm $chars */
 $js = '
 jQuery(".dynamicform_wrapper").on("afterInsert", function(e, item) {
     jQuery(".dynamicform_wrapper .panel-title-address").each(function(index) {
@@ -70,7 +71,8 @@ $this->registerCss($css);
 
                     <div class="dynamic_form" style="margin-top:30px;border:1px solid #ccc;padding:10px;border-radius:10px;">
 
-                        <?php DynamicFormWidget::begin([
+                        <?php
+                        DynamicFormWidget::begin([
                             'widgetContainer' => 'dynamicform_wrapper', // required: only alphanumeric characters plus "_" [A-Za-z0-9_]
                             'widgetBody' => '.container-items', // required: css class selector
                             'widgetItem' => '.item', // required: css class
@@ -116,7 +118,7 @@ $this->registerCss($css);
                             <?php endforeach; ?>
                         </div>
                         <?php DynamicFormWidget::end(); ?>
-
+                        <?php echo "Asd";die();?>
                     </div>
 
                 </div>
