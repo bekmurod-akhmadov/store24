@@ -18,7 +18,6 @@ use yii\widgets\ActiveForm;
         <div class="card-body">
 
                 <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
                 <?= $form->field($model, 'parent')->widget(Select2::classname(), [
                     'data' => \yii\helpers\ArrayHelper::map($model->parentMenu , 'id' , 'name'),
                     'options' => ['placeholder' => 'Parentni tanlang...'],
