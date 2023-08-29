@@ -1,5 +1,6 @@
 <?php
 return [
+
     'frontend' => "http://store24/",
     'backend' => 'http://admin.store24/',
 
