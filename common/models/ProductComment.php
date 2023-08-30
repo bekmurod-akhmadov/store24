@@ -3,17 +3,21 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "product_comment".
  *
  * @property int $id
  * @property int|null $product_id
- * @property int $customer_id
+ * @property string $name
+ * @property string $message
+ * @property int|null $status
  * @property string|null $created_at
  * @property string|null $updated_at
- * @property int|null $rate
- * @property int|null $status
+ * @property int|null $star
  */
 class ProductComment extends \yii\db\ActiveRecord
 {
@@ -31,9 +35,11 @@ class ProductComment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['product_id', 'customer_id', 'rate', 'status'], 'integer'],
-            [['customer_id'], 'required'],
+            [['product_id', 'status', 'star'], 'integer'],
+            [['name', 'message'], 'required'],
+            [['message'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
+            [['name'], 'string', 'max' => 255],
         ];
     }
 
@@ -45,16 +51,27 @@ class ProductComment extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'product_id' => 'Product ID',
-            'customer_id' => 'Customer ID',
+            'name' => 'Ismingiz',
+            'message' => 'Izoh',
+            'status' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
-            'rate' => 'Rate',
-            'status' => 'Status',
+            'star' => 'Star',
         ];
     }
 
-    public function getProduct()
-    {
-        return $this->hasOne(Product::className() , ['id' , 'product_id']);
+    public function behaviors(){
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+                // если вместо метки времени UNIX используется datetime:
+                'value' => new Expression('NOW()'),
+            ],
+        ];
     }
+
 }

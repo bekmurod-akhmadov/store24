@@ -6,6 +6,9 @@ namespace frontend\controllers;
 
 //use app\models\Product;
 use common\models\Category;
+use common\models\ProductComment;
+use common\models\ProductImage;
+use Yii;
 use yii\data\ActiveDataProvider;
 use yii\data\Pagination;
 use yii\web\Controller;
@@ -37,27 +40,53 @@ class ProductController extends Controller
         }
 
         $query =  \common\models\Product::find()->where(['status' => 1 , 'category_id' => $id]);
-        $dateProvider = new ActiveDataProvider([
+        $dataProvider = new ActiveDataProvider([
             'query' =>$query,
             'pagination' => [
                 'pageSize' => 15,
                 'totalCount' => $query->count(),
             ]
         ]);
+
+        $dataProviderGrid = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 6,
+                'totalCount' => $query->count()
+            ]
+        ]);
+
         return $this->render('category' , [
-            'dateProvider' => $dateProvider,
+            'dataProvider' => $dataProvider,
             'mainCategory' => $mainCategory,
             'parentCategory' => $parentCategory,
+            'dataProviderGrid' => $dataProviderGrid
         ]);
     }
 
     public function actionView($slug)
     {
-        $this->layout = 'main2';
+        $this->layout = 'product-view';
         if (!empty($slug)){
             $model = \common\models\Product::findOne(['slug' => $slug]);
             if (!empty($model)){
-                return $this->render('view');
+                $category = Category::findOne(['id' => $model->category_id]);
+                $recomentProducts = Product::find()->where(['status' => 1 , 'category_id' => $model->category_id])->andWhere(['not in' , 'id' , $model->id])->limit(15)->all();
+                $comment = new ProductComment();
+                if (Yii::$app->request->isPost && $comment->load(\Yii::$app->request->post())){
+                    $comment->product_id = $model->id;
+                    $comment->save();
+                    if ($comment->save()){
+                        return $this->refresh();
+                    }
+
+                }
+                return $this->render('view' , [
+                    'category' => $category,
+                    'model' => $model,
+                    'recomentProducts' => $recomentProducts,
+                    'comment' => $comment
+                ]);
             }else{
                 return $this->redirect('/site/error');
             }
