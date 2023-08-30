@@ -172,11 +172,7 @@
                                                                         <?php foreach ($category->childCategory as $item): ?>
                                                                         <li><a href="<?=\yii\helpers\Url::to(['/product/category' , 'id' => $item->id])?>"><?=$item->name?></a></li>
                                                                         <?php endforeach; ?>
-                                                                        <li>
-                                                                            <a href="" style="font-weight:bold;">
-                                                                                <span class="nav-text">Barchasini ko'rish</span>
-                                                                            </a>
-                                                                        </li>
+
                                                                     </ul>
                                                                 <?php endif; ?>
                                                             </div>
@@ -204,16 +200,6 @@
                 <label class="sr-only screen-reader-text" for="search">Search for:</label>
                 <div class="input-group">
                     <input type="text" id="search" class="form-control search-field product-search-field" dir="ltr" value="" name="search" placeholder="Search for products" />
-                    <div class="input-group-addon search-categories popover-header">
-                        <select name='product_cat' id='product_cat' class='postform resizeselect'>
-                            <option value='0' selected='selected'>Barcha Categoriyalar</option>
-                            <?php if(!empty($categories)): ?>
-                            <?php foreach ($categories as $category): ?>
-                                <option class="level-0" value="<?=$category->id?>"><?=$category->name?></option>
-                            <?php endforeach; ?>
-                            <?php endif; ?>
-                        </select>
-                    </div>
                     <!-- .input-group-addon -->
                     <div class="input-group-btn input-group-append">
                         <input type="hidden" id="search-param" name="post_type" value="product" />

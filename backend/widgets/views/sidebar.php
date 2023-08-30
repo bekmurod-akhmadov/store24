@@ -43,9 +43,12 @@
                 <a href="<?=\yii\helpers\Url::to(['/social/index'])?>" class="nav-link"><i class="fas fa-share-alt"></i><span>Ijtimoiy tarmoqlar</span></a>
             </li>
 
+            <li class="nav-item">
+                <a href="<?=\yii\helpers\Url::to(['/banner/index'])?>" class="nav-link"><i class="fas fa-rectangle-ad"></i><span>Bannerlar</span></a>
+            </li>
 
             <li class="nav-item">
-                <a href="<?=\yii\helpers\Url::to(['/testimonial/index'])?>" class="nav-link"><i class="fas fa-comment"></i><span>Izohlar</span></a>
+                <a href="<?=\yii\helpers\Url::to(['/product-comment/index'])?>" class="nav-link"><i class="fas fa-comment"></i><span>Izohlar</span></a>
             </li>
 
         </ul>

@@ -122,7 +122,27 @@ class Product extends \yii\db\ActiveRecord
 
     public function getCommentCount()
     {
-        return $this->hasMany(ProductComment::className() , ['product_id' => 'id'])->count();
+        $res = $this->hasMany(ProductComment::className() , ['product_id' => 'id'])->count();
+        if (!empty($res)){
+            return $res;
+        }else{
+            return 0;
+        }
+    }
+
+    public function getComments()
+    {
+        return $this->hasMany(ProductComment::className() , ['product_id' => 'id'])->all();
+    }
+
+    public function getImages()
+    {
+        return $this->hasMany(ProductImage::className() , ['product_id' => 'id'])->all();
+    }
+
+    public function getChars()
+    {
+        $res =  $this->hasMany(ProductChar::className() , ['product_id' => 'id'])->all();
     }
 
 

@@ -59,12 +59,22 @@ class Category extends \yii\db\ActiveRecord
         return $this->hasMany(self::className() , ['parent_id' => 'id'])->all();
     }
 
+    public function getChildCategoryProduct()
+    {
+        return $this->hasMany(self::className() , ['parent_id' => 'id']);
+    }
+
+    public function getChildProducts()
+    {
+        return $this->hasMany(Product::className() , ['category_id' => 'id'])->via('childCategoryProduct');
+    }
     public function getChildCount()
     {
         return $this->hasMany(self::className() , ['parent_id' => 'id'])->count();
     }
 
-    public function getProducts(){
-        return $this->hasMany(Product::className() , ['category_id' => 'id']);
-    }
+//    public function getParent()
+//    {
+//        return $this->hasOne(self::className() , ['id' , 'parent_id'])->one();
+//    }
 }

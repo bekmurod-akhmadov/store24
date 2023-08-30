@@ -28,8 +28,8 @@
                             <div class="woocommerce columns-5">
                                 <div class="products">
 
-                                    <?php if (!empty($category->products)): ?>
-                                    <?php foreach ($category->products as $item): ?>
+                                    <?php if (!empty($category->childProducts)): ?>
+                                    <?php foreach ($category->childProducts as $item): ?>
                                     <?php
                                         $image = \common\components\StaticFunctions::getImage($item , 'product' , 'image');
                                     ?>

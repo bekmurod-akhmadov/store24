@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `{{%product_comment}}`.
  */
-class m230829_102152_create_product_comment_table extends Migration
+class m230830_121551_create_product_comment_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -15,11 +15,12 @@ class m230829_102152_create_product_comment_table extends Migration
         $this->createTable('{{%product_comment}}', [
             'id' => $this->primaryKey(),
             'product_id' => $this->integer(),
-            'customer_id' => $this->integer()->notNull(),
+            'name' => $this->string()->notNull(),
+            'message' => $this->text()->notNull(),
+            'status' => $this->integer()->defaultValue(0),
             'created_at' => $this->dateTime(),
             'updated_at' => $this->dateTime(),
-            'rate' => $this->integer(),
-            'status' => $this->integer()->defaultValue(0),
+            'star' => $this->integer()
         ]);
     }
 

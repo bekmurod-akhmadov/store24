@@ -1,6 +1,7 @@
-<?php
-    $image = \common\components\StaticFunctions::getImage($model , 'product' , 'image');
-?>
+
+    <?php
+        $image = \common\components\StaticFunctions::getImage($model , 'product' , 'image');
+    ?>
 
     <div class="yith-wcwl-add-to-wishlist">
         <a href="#" rel="nofollow" class="add_to_wishlist"> Istaklarga qo'shish</a>
