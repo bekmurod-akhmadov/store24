@@ -88,7 +88,7 @@ class Product extends \yii\db\ActiveRecord
             'sku' => 'Sku',
             'price' => 'Narxi',
             'discount' => 'Aksiya %',
-            'created_at' => 'Created At',
+            'created_at' => 'Qo\'shilgan vaqti',
             'updated_at' => 'Updated At',
             'deleted_at' => 'Deleted At',
             'status' => 'Status',
@@ -111,7 +111,7 @@ class Product extends \yii\db\ActiveRecord
         // bazadan barcha status 1 bolgan kategoriyalarni olish
     public function getCategories()
     {
-        return Category::find()->where(['status' => 1])->all();
+        return Category::find()->where(['status' => 1 ])->andWhere(['not in' , 'parent_id' , 'NULL'])->all();
     }
 
     // category_id boyicha 1 ta categoriyani olish
@@ -119,6 +119,12 @@ class Product extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Brand::className() , ['id' => 'category_id']);
     }
+
+    public function getCommentCount()
+    {
+        return $this->hasMany(ProductComment::className() , ['product_id' => 'id'])->count();
+    }
+
 
 
 

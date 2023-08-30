@@ -3,32 +3,6 @@
     <div class="col-full">
         <div class="before-footer-wrap">
             <div class="col-full">
-                <div class="footer-newsletter">
-                    <div class="media">
-                        <i class="footer-newsletter-icon tm tm-newsletter"></i>
-                        <div class="media-body">
-                            <div class="clearfix">
-                                <div class="newsletter-header">
-                                    <h5 class="newsletter-title">Sign up to Newsletter</h5>
-                                    <span class="newsletter-marketing-text">...and receive
-                                                    <strong>$20 coupon for first shopping</strong>
-                                                </span>
-                                </div>
-                                <!-- .newsletter-header -->
-                                <div class="newsletter-body">
-                                    <form class="newsletter-form">
-                                        <input type="text" placeholder="Enter your email address">
-                                        <button class="button" type="button">Sign up</button>
-                                    </form>
-                                </div>
-                                <!-- .newsletter body -->
-                            </div>
-                            <!-- .clearfix -->
-                        </div>
-                        <!-- .media-body -->
-                    </div>
-                    <!-- .media -->
-                </div>
                 <!-- .footer-newsletter -->
                 <div class="footer-social-icons">
                     <ul class="social-icons nav">

@@ -36,6 +36,7 @@ AppAsset::register($this);
                             <?=$content?>
                         </main>
                     </div>
+                    <?=\frontend\widgets\ProductSidebar::widget()?>
                 </div>
             </div>
         </div>

@@ -9,9 +9,13 @@
                 <div class="products">
                     <?php if (!empty($models)): ?>
                         <?php foreach ($models as $model): ?>
+<!--                        --><?php
+//                            echo "<pre>";
+//                            print_r($model);die;
+//                            ?>
                         <?php $image = \common\components\StaticFunctions::getImage($model , 'product' , 'image')?>
                         <div class="landscape-product product">
-                            <a class="woocommerce-LoopProduct-link" href="single-product-fullwidth.html">
+                            <a class="woocommerce-LoopProduct-link" href="<?=\yii\helpers\Url::to(['/product/view' , 'id' => $model->slug])?>">
                                 <div class="media">
                                     <img class="wp-post-image" src="<?=$image?>" alt="">
                                     <div class="media-body">
@@ -19,16 +23,17 @@
                                             <ins>
                                                 <span class="amount"> </span>
                                             </ins>
-                                            <span class="amount"> $500</span>
+                                            <span class="amount"><?=number_format($model->price , '0' , ' ' , ' ')?> so'm</span>
                                         </span>
                                         <!-- .price -->
-                                        <h2 class="woocommerce-loop-product__title">Headset 3D Glasses VR for Android</h2>
+                                        <h2 class="woocommerce-loop-product__title"><?=$model->name?></h2>
                                         <div class="techmarket-product-rating">
                                             <div title="Rated 0 out of 5" class="star-rating">
-                                                                                <span style="width:0%">
-                                                                                    <strong class="rating">0</strong> out of 5</span>
+                                                <span style="width:0%">
+                                                    <strong class="rating"></strong> out of 5
+                                                </span>
                                             </div>
-                                            <span class="review-count">(0)</span>
+                                            <span class="review-count">(<?=$model->commentCount?>)</span>
                                         </div>
                                         <!-- .techmarket-product-rating -->
                                     </div>
