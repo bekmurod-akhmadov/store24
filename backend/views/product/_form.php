@@ -118,7 +118,7 @@ $this->registerCss($css);
                             <?php endforeach; ?>
                         </div>
                         <?php DynamicFormWidget::end(); ?>
-                        <?php echo "Asd";die();?>
+
                     </div>
 
                 </div>

@@ -63,4 +63,8 @@ class Category extends \yii\db\ActiveRecord
     {
         return $this->hasMany(self::className() , ['parent_id' => 'id'])->count();
     }
+
+    public function getProducts(){
+        return $this->hasMany(Product::className() , ['category_id' => 'id']);
+    }
 }

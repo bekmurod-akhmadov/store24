@@ -19,7 +19,7 @@
                         ?>
                         <!-- .product-category -->
                         <div class="product-category product">
-                            <a href="<?=\yii\helpers\Url::to(['/product/category' , 'id' => $model->id])?>">
+                            <a href="<?=\yii\helpers\Url::to(['/product/by-cat' , 'id' => $model->id])?>">
                                 <img style="width:224px;height:197px;object-fit: cover;" alt="Audio &amp; Music" src="<?=$image?>">
                                 <h2 class="woocommerce-loop-category__title">
                                     <?=$model->name?>

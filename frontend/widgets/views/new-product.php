@@ -1,7 +1,7 @@
 <section class="section-hot-new-arrivals section-products-carousel-tabs techmarket-tabs">
     <div class="section-products-carousel-tabs-wrap">
         <header class="section-header">
-            <h2 class="section-title">Hot New Arrivals</h2>
+            <h2 class="section-title">Eng so'nggi qo'shilganlar</h2>
         </header>
         <!-- .section-header -->
         <div class="tab-content">
@@ -10,27 +10,34 @@
                     <div class="container-fluid">
                         <div class="woocommerce">
                             <div class="products">
-                                <div class="product">
-                                    <div class="yith-wcwl-add-to-wishlist">
-                                        <a href="wishlist.html" rel="nofollow" class="add_to_wishlist"> Add to Wishlist</a>
-                                    </div>
-                                    <a href="single-product-fullwidth.html" class="woocommerce-LoopProduct-link">
-                                        <img src="/images/products/12.jpg" width="224" height="197" class="wp-post-image" alt="">
-                                        <span class="price">
-                                                                            <ins>
-                                                                                <span class="amount"> </span>
-                                                                            </ins>
-                                                                            <span class="amount"> 456.00</span>
-                                                                        </span>
-                                        <!-- /.price -->
-                                        <h2 class="woocommerce-loop-product__title">Bbd 23-Inch Screen LED-Lit Monitorss Buds</h2>
-                                    </a>
-                                    <div class="hover-area">
-                                        <a class="button add_to_cart_button" href="cart.html" rel="nofollow">Add to cart</a>
-                                        <a class="add-to-compare-link" href="compare.html">Add to compare</a>
-                                    </div>
-                                </div>
-                                <!-- /.product-outer -->
+                                <?php if (!empty($models)): ?>
+                                    <?php foreach ($models as $model): ?>
+                                        <?php
+                                        $image = \common\components\StaticFunctions::getImage($model , 'product' , 'image');
+                                        ?>
+                                        <div class="product">
+                                            <div class="yith-wcwl-add-to-wishlist">
+                                                <a href="#" rel="nofollow" class="add_to_wishlist"> Istaklarga qo'shish</a>
+                                            </div>
+                                            <a href="<?=\yii\helpers\Url::to(['/product/view' , 'slug' => $model->slug])?>" class="woocommerce-LoopProduct-link">
+                                                <img src="<?=$image?>" width="224" height="197" class="wp-post-image" alt="">
+                                                <span class="price">
+                                            <ins>
+                                                <span class="amount"> </span>
+                                            </ins>
+                                            <span class="amount"><?=number_format($model->price , '0' , ' ' , ' ')?> so'm</span>
+                                        </span>
+                                                <!-- /.price -->
+                                                <h2 class="woocommerce-loop-product__title"><?=$model->name?></h2>
+                                            </a>
+                                            <div class="hover-area">
+                                                <a class="button add_to_cart_button" href="#" rel="nofollow">Savatga</a>
+                                                <a class="add-to-compare-link" href="#">Taqqoslash</a>
+                                            </div>
+                                        </div>
+                                        <!-- /.product-outer -->
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <!-- .woocommerce -->

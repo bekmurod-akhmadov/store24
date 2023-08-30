@@ -11,9 +11,9 @@
     </div>
     <div class="sidebar-menu-content">
         <ul class="nav nav-sidebar-menu sidebar-toggle-view">
-            <li class="nav-item sidebar-nav-item <?=$action == 'student' ? 'active' : ''?>">
+            <li class="nav-item sidebar-nav-item <?=in_array($action , ['product' , 'category' , 'brand']) ? 'active' : ''?>">
                 <a href="#" class="nav-link"><i class="fas fa-shopping-cart"></i><span>Tovarlar</span></a>
-                <ul class="nav sub-group-menu menu-open" style="display:<?=$action == 'student' ? 'block' : 'none'?>">
+                <ul class="nav sub-group-menu menu-open" style="display:<?=in_array($action , ['product' , 'category' , 'brand']) ? 'block' : 'none'?>">
                     <li class="nav-item">
                         <a href="<?=\yii\helpers\Url::to(['product/index'])?>" class="nav-link"><i class="fas fa-angle-right"></i>Tovarlar</a>
                     </li>
@@ -26,9 +26,23 @@
                 </ul>
             </li>
 
-            <li class="nav-item">
-                <a href="<?=\yii\helpers\Url::to(['/menu/index'])?>" class="nav-link"><i class="fas fa-bars"></i><span>Menular</span></a>
+            <li class="nav-item sidebar-nav-item <?=in_array($action , ['order' , 'customer']) ? 'active' : ''?>">
+                <a href="#" class="nav-link"><i class="fas fa-tags"></i><span>Buyurtmalar</span></a>
+                <ul class="nav sub-group-menu menu-open" style="display:<?=in_array($action , ['order' , 'customer']) ? 'block' : 'none'?>">
+                    <li class="nav-item">
+                        <a href="<?=\yii\helpers\Url::to(['order/index'])?>" class="nav-link"><i class="fas fa-angle-right"></i>Buyurtmalar tarixi</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="<?=\yii\helpers\Url::to(['customer/index'])?>" class="nav-link"><i class="fas fa-angle-right"></i>Mijozlar</a>
+                    </li>
+                </ul>
             </li>
+
+            <li class="nav-item">
+                <a href="<?=\yii\helpers\Url::to(['/social/index'])?>" class="nav-link"><i class="fas fa-share-alt"></i><span>Ijtimoiy tarmoqlar</span></a>
+            </li>
+
 
             <li class="nav-item">
                 <a href="<?=\yii\helpers\Url::to(['/testimonial/index'])?>" class="nav-link"><i class="fas fa-comment"></i><span>Izohlar</span></a>

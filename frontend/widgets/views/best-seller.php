@@ -28,7 +28,7 @@
                                     <div class="yith-wcwl-add-to-wishlist">
                                         <a href="#" rel="nofollow" class="add_to_wishlist"> Istaklarga qo'shish</a>
                                     </div>
-                                    <a href="<?=\yii\helpers\Url::to(['/product/view' , 'id' => $model->slug])?>" class="woocommerce-LoopProduct-link">
+                                    <a href="<?=\yii\helpers\Url::to(['/product/view' , 'slug' => $model->slug])?>" class="woocommerce-LoopProduct-link">
                                         <img src="<?=$image?>" width="224" height="197" class="wp-post-image" alt="">
                                         <span class="price">
                                             <ins>
