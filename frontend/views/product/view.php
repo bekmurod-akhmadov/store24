@@ -1,3 +1,6 @@
+<?php
+    $this->title = $model->name;
+?>
 <nav class="woocommerce-breadcrumb">
     <span class="delimiter"></span><a href="<?=\yii\helpers\Url::home()?>">Asosiy</a>
     <span class="delimiter">
@@ -102,11 +105,11 @@
                         <?php if ($model->discount != NULL ):?>
                         <del>
                             <span class="woocommerce-Price-amount amount">
-                            <span class="woocommerce-Price-currencySymbol"></span><?=number_format($model->discount , '0' , ' ' , ' ')?> so'm</span>
+                            <span class="woocommerce-Price-currencySymbol"></span><?=number_format($model->price , '0' , ' ' , ' ')?> so'm</span>
                         </del>
                         <ins>
                             <span class="woocommerce-Price-amount amount">
-                            <span class="woocommerce-Price-currencySymbol"><?=number_format($model->price , '0' , ' ' , ' ')?> so'm</span>
+                            <span class="woocommerce-Price-currencySymbol"><?=number_format($model->discount , '0' , ' ' , ' ')?> so'm</span>
                         </ins>
                         <?php else: ?>
                             <ins>

@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /** @var common\models\ProductComment $model */
 
 $this->title = 'Qo\'shish';
-$this->params['breadcrumbs'][] = ['label' => 'Product Comments', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Tovar Izohlari', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="product-comment-create">

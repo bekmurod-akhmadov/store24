@@ -1,5 +1,6 @@
 <?php
 
+use kartik\switchinput\SwitchInput;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -21,13 +22,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'message')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
-
     <?= $form->field($model, 'created_at')->textInput() ?>
 
     <?= $form->field($model, 'updated_at')->textInput() ?>
 
     <?= $form->field($model, 'star')->textInput() ?>
+
+    <?= $form->field($model, 'status')->widget(SwitchInput::classname(), [])?>
 
     <div class="form-group">
         <?= Html::submitButton('Saqlash', ['class' => 'btn-fill-lg bg-blue-dark']) ?>

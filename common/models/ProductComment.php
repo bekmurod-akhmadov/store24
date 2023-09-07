@@ -50,8 +50,8 @@ class ProductComment extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'product_id' => 'Product ID',
-            'name' => 'Ismingiz',
+            'product_id' => 'Tovar',
+            'name' => 'Ismi',
             'message' => 'Izoh',
             'status' => 'Status',
             'created_at' => 'Created At',
@@ -72,6 +72,11 @@ class ProductComment extends \yii\db\ActiveRecord
                 'value' => new Expression('NOW()'),
             ],
         ];
+    }
+
+    public function getProduct()
+    {
+        return $this->hasOne(Product::className() , ['id' => 'product_id']);
     }
 
 }
