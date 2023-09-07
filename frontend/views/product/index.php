@@ -1,15 +1,11 @@
 <?php
-    $this->title = !empty($mainCategory) ? $mainCategory ->name : $search;
+$this->title = 'Barcha tovarlar';
 ?>
 <nav class="woocommerce-breadcrumb mb-0">
     <a href="<?=\yii\helpers\Url::home()?>">Asosiy</a>
     <i class="tm tm-breadcrumbs-arrow-right"></i>
-    <?php if (isset($parentCategory)): ?>
-    <a href="<?=\yii\helpers\Url::to(['/product/by-cat' , 'id' => $parentCategory->id])?>"><?=$parentCategory->name?></a>
-    <i class="tm tm-breadcrumbs-arrow-right"></i>
-    <?php endif; ?>
     <span class="delimiter">
-        <span style="font-size:15px;font-weight: 500;"><?=!empty($mainCategory) ? $mainCategory ->name : $search?></span>
+        <span style="font-size:15px;font-weight: 500;">Barcha tovarlar</span>
     </span>
 </nav>
 
@@ -35,16 +31,16 @@
         </li>
     </ul>
     <!-- .shop-view-switcher -->
-<!--    <form class="form-techmarket-wc-ppp" method="POST">-->
-<!--        <select class="techmarket-wc-wppp-select c-select" onchange="this.form.submit()" name="ppp">-->
-<!--            <option value="20">Show 20</option>-->
-<!--            <option value="40">Show 40</option>-->
-<!--            <option value="-1">Show All</option>-->
-<!--        </select>-->
-<!--        <input type="hidden" value="5" name="shop_columns">-->
-<!--        <input type="hidden" value="15" name="shop_per_page">-->
-<!--        <input type="hidden" value="right-sidebar" name="shop_layout">-->
-<!--    </form>-->
+    <!--    <form class="form-techmarket-wc-ppp" method="POST">-->
+    <!--        <select class="techmarket-wc-wppp-select c-select" onchange="this.form.submit()" name="ppp">-->
+    <!--            <option value="20">Show 20</option>-->
+    <!--            <option value="40">Show 40</option>-->
+    <!--            <option value="-1">Show All</option>-->
+    <!--        </select>-->
+    <!--        <input type="hidden" value="5" name="shop_columns">-->
+    <!--        <input type="hidden" value="15" name="shop_per_page">-->
+    <!--        <input type="hidden" value="right-sidebar" name="shop_layout">-->
+    <!--    </form>-->
     <!-- .form-techmarket-wc-ppp -->
     <!-- .woocommerce-ordering -->
     <nav class="techmarket-advanced-pagination">

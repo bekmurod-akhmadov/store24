@@ -15,10 +15,13 @@ class Header2 extends Widget
         $categories = Category::find()->where(['status' => 1])->all();
         $parentCategories = Category::find()->where(['status' => 1 , 'parent_id' => NULL])->all();
         $menus = Menu::find()->where(['status' => 1 , 'parent' => NULL])->all();
+        $session = \Yii::$app->session;
+        $session->open();
         return $this->render('header' , [
             'categories' => $categories,
             'parentCategories' => $parentCategories,
             'menus' => $menus,
+            'session' => $session,
         ]);
     }
 }

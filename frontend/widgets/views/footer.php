@@ -441,3 +441,33 @@
     <!-- .col-full -->
 </footer>
 <!-- .site-footer -->
+<div class="modal fade" id="cart"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" >
+        <div class="modal-content" style="width: 1260px;left: -200px;padding: 30px">
+            <div class="modal-header" style="border: none">
+                <h5 style="font-size: 24px;" class="modal-title" id="exampleModalLabel">Sizning savatingiz</h5>
+
+                <button style="background: none;border: none" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span style="font-size: 40px;" id="close_btn" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                ...
+            </div>
+            <div class="modal-footer">
+                <a style="border-radius: 0px" href="<?=\yii\helpers\Url::to(['cart/checkout'])?>" class="button add_to_cart_button">Rasmiylashtirishga o'tish</a>
+                    <button style="border-radius: 0px" id="clear-cart" type="button" class="btn btn-danger">Savatni tozalash</button>
+                <button style="border-radius: 0px" id="close-button" type="button" class="btn btn-secondary" data-dismiss="modal">Xaridni davom ettirish</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div  id="cart-notification" class="cart-notification"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" >
+        <div class="text-light notification_block">
+            <i class="fa fa-check-circle"></i>
+            <h5 style="font-size: 20px;color:#fff" class="modal-title" id="exampleModalLabel">Tovar savatga qo'shildi</h5>
+        </div>
+    </div>
+</div>

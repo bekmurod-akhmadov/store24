@@ -96,4 +96,60 @@ class ProductController extends Controller
 
 
     }
+
+    public function actionSearch()
+    {
+        $this->layout = 'main3';
+        $search = Yii::$app->request->get('search');
+        $search = strip_tags(htmlspecialchars($search));
+        $query = Product::find()->where(['status' => 1])->andWhere(['like' , 'name' , $search])->orWhere(['like' , 'description' , $search])->orWhere(['like' , 'body' , $search]);
+        $dataProvider = new ActiveDataProvider([
+            'query' =>$query,
+            'pagination' => [
+                'pageSize' => 15,
+                'totalCount' => $query->count(),
+            ]
+        ]);
+
+        $dataProviderGrid = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 6,
+                'totalCount' => $query->count()
+            ]
+        ]);
+
+
+        return $this->render('category' , [
+            'dataProvider' => $dataProvider,
+            'search' => $search,
+            'dataProviderGrid' => $dataProviderGrid
+        ]);
+    }
+
+    public function actionIndex()
+    {
+        $this->layout = 'main3';
+        $query = Product::find()->where(['status' => 1]);
+        $dataProvider = new ActiveDataProvider([
+            'query' =>$query,
+            'pagination' => [
+                'pageSize' => 20,
+                'totalCount' => $query->count(),
+            ]
+        ]);
+
+        $dataProviderGrid = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 6,
+                'totalCount' => $query->count()
+            ]
+        ]);
+
+        return $this->render('index' , [
+            'dataProvider' => $dataProvider,
+            'dataProviderGrid' => $dataProviderGrid
+        ]);
+    }
 }

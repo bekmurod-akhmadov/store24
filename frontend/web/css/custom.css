@@ -1,0 +1,28 @@
+.cart-notification{
+    position:fixed;
+    top:50px;
+    right:-100%;
+    z-index:1000;
+    width:100%;
+    max-width:300px;
+    transition:.4s all ease;
+}
+.cart-notification.active{
+    right:0;
+}
+.notification_block{
+    display:flex;
+    align-items:center;
+    background: #0063d1;
+    padding:10px;
+}
+
+.notification_block i{
+    font-size:25px;
+    margin-right: 10px;
+}
+
+.product_list_widget{
+    height:400px;
+    overflow-y: scroll;
+}

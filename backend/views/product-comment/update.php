@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /** @var common\models\ProductComment $model */
 
 $this->title = 'Update Product Comment: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Product Comments', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Tovar izohlari', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Tahrirlash';
 ?>

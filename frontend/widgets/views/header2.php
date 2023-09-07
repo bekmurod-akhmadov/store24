@@ -610,39 +610,12 @@
                 </ul>
             </div>
             <!-- .departments-menu -->
-            <form class="navbar-search" method="get" action="home-v1.html">
+            <form class="navbar-search" method="get" action="<?=\yii\helpers\Url::to(['/product/search'])?>">
                 <label class="sr-only screen-reader-text" for="search">Search for:</label>
                 <div class="input-group">
-                    <input type="text" id="search" class="form-control search-field product-search-field" dir="ltr" value="" name="s" placeholder="Search for products" />
-                    <div class="input-group-addon search-categories popover-header">
-                        <select name='product_cat' id='product_cat' class='postform resizeselect'>
-                            <option value='0' selected='selected'>Barcha kategoriyalar</option>
-                            <option class="level-0" value="television">Televisions</option>
-                            <option class="level-0" value="home-theater-audio">Home Theater &amp; Audio</option>
-                            <option class="level-0" value="headphones">Headphones</option>
-                            <option class="level-0" value="digital-cameras">Digital Cameras</option>
-                            <option class="level-0" value="cells-tablets">Cells &amp; Tablets</option>
-                            <option class="level-0" value="smartwatches">Smartwatches</option>
-                            <option class="level-0" value="games-consoles">Games &amp; Consoles</option>
-                            <option class="level-0" value="printer">Printer</option>
-                            <option class="level-0" value="tv-video">TV &amp; Video</option>
-                            <option class="level-0" value="home-entertainment">Home Entertainment</option>
-                            <option class="level-0" value="tvs">TVs</option>
-                            <option class="level-0" value="speakers">Speakers</option>
-                            <option class="level-0" value="computers-laptops">Computers &amp; Laptops</option>
-                            <option class="level-0" value="laptops">Laptops</option>
-                            <option class="level-0" value="ultrabooks">Ultrabooks</option>
-                            <option class="level-0" value="notebooks">Notebooks</option>
-                            <option class="level-0" value="desktop-pcs">Desktop PCs</option>
-                            <option class="level-0" value="mac-computers">Mac Computers</option>
-                            <option class="level-0" value="all-in-one-pc">All in One PC</option>
-                            <option class="level-0" value="audio-music">Audio &amp; Music</option>
-                            <option class="level-0" value="pc-components">PC Components</option>
-                        </select>
-                    </div>
+                    <input type="text" id="search" class="form-control search-field product-search-field"  name="search" placeholder="Search for products" />
                     <!-- .input-group-addon -->
                     <div class="input-group-btn input-group-append">
-                        <input type="hidden" id="search-param" name="post_type" value="product" />
                         <button type="submit" class="btn btn-primary">
                             <i class="fa fa-search"></i>
                             <span class="search-btn">Search</span>
@@ -684,26 +657,46 @@
                             <div class="widget woocommerce widget_shopping_cart">
                                 <div class="widget_shopping_cart_content">
                                     <ul class="woocommerce-mini-cart cart_list product_list_widget ">
-                                        <li class="woocommerce-mini-cart-item mini_cart_item">
-                                            <a href="#" class="remove" aria-label="Remove this item" data-product_id="65" data-product_sku="">×</a>
-                                            <a href="single-product-sidebar.html">
-                                                <img src="/images/products/mini-cart1.jpg" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt="">XONE Wireless Controller&nbsp;
-                                            </a>
-                                            <span class="quantity">1 ×
-                                                            <span class="woocommerce-Price-amount amount">
-                                                                <span class="woocommerce-Price-currencySymbol">$</span>64.99</span>
+                                        <?php  if (!empty($session['cart'])):?>
+                                            <?php foreach ($session['cart'] as $key => $cart): ?>
+                                                <?php
+                                                $product = \common\models\Product::findOne($key);
+                                                $image = \common\components\StaticFunctions::getImage($product , 'product' , 'image');
+                                                ?>
+                                                <li class="woocommerce-mini-cart-item mini_cart_item"   >
+                                                    <a href="#" class="remove" aria-label="Remove this item" data-product_id="65" data-product_sku="">×</a>
+                                                    <a href="<?=\yii\helpers\Url::to(['/product/view' , 'slug' => $product->slug])?>">
+                                                        <img src="<?=$image?>" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""><?=$product->name?>
+                                                    </a>
+                                                    <span class="quantity"><?=$cart['qty']?> ×
+                                                        <span class="woocommerce-Price-amount amount">
+                                                            <span class="woocommerce-Price-currencySymbol"><?=number_format($product->discount > 0 ? $product->discount : $product->price , '0',' ' , ' ')?></span> so'm
                                                         </span>
-                                        </li>
-                                        <li class="woocommerce-mini-cart-item mini_cart_item">
-                                            <a href="#" class="remove" aria-label="Remove this item" data-product_id="27" data-product_sku="">×</a>
-                                            <a href="single-product-sidebar.html">
-                                                <img src="/images/products/mini-cart2.jpg" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt="">Gear Virtual Reality 3D with Bluetooth Glasses&nbsp;
-                                            </a>
-                                            <span class="quantity">1 ×
-                                                            <span class="woocommerce-Price-amount amount">
-                                                                <span class="woocommerce-Price-currencySymbol">$</span>72.00</span>
-                                                        </span>
-                                        </li>
+                                                    </span>
+                                                </li>
+                                                <!-- .cart_list -->
+
+                                            <?php endforeach;?>
+                                            <p class="woocommerce-mini-cart__total total">
+                                                <strong>Jami:</strong>
+                                                <span class="woocommerce-Price-amount amount">
+                                                <span class="woocommerce-Price-currencySymbol"><?=number_format( $session['cart.sum'], '0',' ' , ' ')?></span> so'm</span>
+                                            </p>
+                                            <p class="woocommerce-mini-cart__buttons buttons">
+                                                <a href="<?=\yii\helpers\Url::to(['/cart/cart'])?>" class="button wc-forward">Savatga o'tish</a>
+                                                <a href="<?=\yii\helpers\Url::to(['/cart/checkout'])?>" class="button checkout wc-forward">Rasmiylashtirish</a>
+                                            </p>
+                                        <?php else: ?>
+                                            <li class="woocommerce-mini-cart-item mini_cart_item"   >
+
+                                                <span class="quantity">
+                                                    <span class="woocommerce-Price-amount amount text-center">
+                                                        <div class="alert alert-warning">Savatingiz hali bo'sh</div>
+                                                        <a href="<?=\yii\helpers\Url::to(['/product/index'])?>" class="button wc-forward text-light">Qo'shish</a>
+                                                    </span>
+                                                </span>
+                                            </li>
+                                        <?php endif;?>
                                     </ul>
                                     <!-- .cart_list -->
                                     <p class="woocommerce-mini-cart__total total">
@@ -1281,8 +1274,10 @@
                             <form role="search" method="get" class="woocommerce-product-search" action="">
                                 <label class="screen-reader-text" for="woocommerce-product-search-field-0">Search for:</label>
                                 <input type="search" id="woocommerce-product-search-field-0" class="search-field" placeholder="Search products&hellip;" value="" name="s" />
-                                <input type="submit" value="Search" />
-                                <input type="hidden" name="post_type" value="product" />
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-search"></i>
+                                    <span class="search-btn">Search</span>
+                                </button>
                             </form>
                         </div>
                         <!-- .widget -->
