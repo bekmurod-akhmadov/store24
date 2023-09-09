@@ -2,6 +2,7 @@
 namespace frontend\widgets;
 
 use common\models\Category;
+use common\models\CustomerUser;
 use common\models\Menu;
 use yii\base\Widget;
 
@@ -14,11 +15,14 @@ class Header extends Widget
         $menus = Menu::find()->where(['status' => 1 , 'parent' => NULL])->all();
         $session = \Yii::$app->session;
         $session->open();
+        $userId = \Yii::$app->user->getId();
+        $user = CustomerUser::findOne($userId);
         return $this->render('header' , [
             'categories' => $categories,
             'parentCategories' => $parentCategories,
             'menus' => $menus,
             'session' => $session,
+            'user' => $user,
         ]);
     }
 }

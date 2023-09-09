@@ -715,6 +715,81 @@
                         </li>
                     </ul>
                     <!-- .dropdown-menu-mini-cart -->
+                    <?php if(!empty($user)): ?>
+                        <ul id="site-header-cart" class="site-header-cart menu">
+                            <li class="animate-dropdown dropdown ">
+                                <a class="cart-contents" href="<?=\yii\helpers\Url::to(['/customer/profile'])?>" data-toggle="dropdown" >
+                                    <i class="fa fa-user"></i>
+                                    <span class="amount" style="padding-left: 10px;">
+                                        <span class="price-label"><?=$user->username?></span></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-mini-cart">
+                                    <li>
+                                        <div class="widget woocommerce widget_shopping_cart">
+                                            <div class="widget_shopping_cart_content">
+                                                <ul class="woocommerce-mini-cart cart_list product_list_widget ">
+                                                    <li class="woocommerce-mini-cart-item mini_cart_item">
+                                                        <a  class="profile_item" href="<?=\yii\helpers\Url::to(['/customer/profile'])?>">
+                                                            <i class="fa fa-address-card mr-1"></i>
+                                                            <span>Mening profilim</span>
+                                                        </a>
+                                                        <a class="profile_item" href="">
+                                                            <i class="fa fa-gear mr-1"></i>
+                                                            <span>Sozlamalar</span>
+                                                        </a>
+                                                        <a class="profile_item" href="<?=\yii\helpers\Url::to(['/customer/logout'])?>">
+                                                            <i class="fa fa-right-from-bracket mr-1"></i>
+                                                            <span>Chiqish</span>
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+
+                                            </div>
+                                            <!-- .widget_shopping_cart_content -->
+                                        </div>
+                                        <!-- .widget_shopping_cart -->
+                                    </li>
+                                </ul>
+                                <!-- .dropdown-menu-mini-cart -->
+                            </li>
+                        </ul>
+                    <?php else: ?>
+                        <ul class="site-header-cart menu">
+                            <li class="animate-dropdown dropdown ">
+                                <a class="cart-contents" href="<?=\yii\helpers\Url::to(['/customer/profile'])?>" data-toggle="dropdown" >
+                                    <i class="fa fa-user"></i>
+                                    <span class="amount" style="padding-left: 10px;">
+                                        <span class="price-label">Mening profilim</span></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-mini-cart">
+                                    <li>
+                                        <div class="widget woocommerce widget_shopping_cart">
+                                            <div class="widget_shopping_cart_content">
+                                                <ul class="woocommerce-mini-cart cart_list product_list_widget ">
+                                                    <li class="woocommerce-mini-cart-item mini_cart_item">
+                                                        <a  class="profile_item" href="<?=\yii\helpers\Url::to(['/customer/profile'])?>">
+                                                            <i class="fa fa-door-open mr-1"></i>
+                                                            <span>Kirish</span>
+                                                        </a>
+                                                        <a class="profile_item" href="<?=\yii\helpers\Url::to(['/customer/registration'])?>">
+                                                            <i class="fa fa-id-card mr-1"></i>
+                                                            <span>Ro'yhatdan o'tish</span>
+                                                        </a>
+
+                                                </ul>
+
+                                            </div>
+                                            <!-- .widget_shopping_cart_content -->
+                                        </div>
+                                        <!-- .widget_shopping_cart -->
+                                    </li>
+                                </ul>
+                                <!-- .dropdown-menu-mini-cart -->
+                            </li>
+                        </ul>
+                    <?php endif; ?>
+                    <!-- .header-wishlist -->
                 </li>
             </ul>
             <!-- .site-header-cart -->

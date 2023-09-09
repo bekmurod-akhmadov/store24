@@ -22,7 +22,14 @@
     margin-right: 10px;
 }
 
-.product_list_widget{
+.product_list_widget-1{
     height:400px;
     overflow-y: scroll;
+}
+.site-header .widget_shopping_cart_content .product_list_widget .mini_cart_item .profile_item{
+    font-size:16px;
+    margin-bottom: 15px;
+}
+.site-header .widget_shopping_cart_content .product_list_widget .mini_cart_item .profile_item:last-child{
+    margin-bottom: 0;
 }

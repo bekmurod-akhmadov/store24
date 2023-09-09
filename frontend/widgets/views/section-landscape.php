@@ -15,7 +15,7 @@
 //                            ?>
                         <?php $image = \common\components\StaticFunctions::getImage($model , 'product' , 'image')?>
                         <div class="landscape-product product">
-                            <a class="woocommerce-LoopProduct-link" href="<?=\yii\helpers\Url::to(['/product/view' , 'id' => $model->slug])?>">
+                            <a class="woocommerce-LoopProduct-link" href="<?=\yii\helpers\Url::to(['/product/view' , 'slug' => $model->slug])?>">
                                 <div class="media">
                                     <img class="wp-post-image" src="<?=$image?>" alt="">
                                     <div class="media-body">
