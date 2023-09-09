@@ -19,6 +19,7 @@ class AppAsset extends AssetBundle
         "/css/font-techmarket.css" ,
         "/css/slick.css" ,
         "/css/techmarket-font-awesome.css" ,
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css",
         "/css/slick-style.css" ,
         "/css/animate.min.css" ,
         "/css/style.css" ,

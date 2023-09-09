@@ -12,7 +12,7 @@ use yii\web\Controller;
 
 class CartController extends Controller
 {
-    public $layout = 'main3';
+    public $layout = 'cart';
 
     public function actionAdd($id)
     {
@@ -59,7 +59,44 @@ class CartController extends Controller
 
     public function actionCart()
     {
-        return $this->render('cart');
+        $session = Yii::$app->session;
+        $session->open();
+        return $this->render('cart' , [
+            'session' => $session,
+        ]);
+    }
+
+    public function actionMinus(){
+        $id = Yii::$app->request->get('id');
+        $count = Yii::$app->request->get('count');
+        $session = Yii::$app->session;
+        $session->open();
+        $product = Product::findOne($id);
+        $cart = new Cart();
+        $cart->addToCart($product,$count);
+        $this->layout = false;
+        return $this->renderAjax('cart',compact('session'));
+
+    }
+
+    public function actionRemove($id)
+    {
+        $session = Yii::$app->session;
+        $session->open();
+        $cart = new Cart();
+        $cart->recalc($id);
+        return $this->render('/cart/cart' , [
+            'session' => $session,
+        ]);
+    }
+
+    public function actionCheckout()
+    {
+        $session = Yii::$app->session;
+        $session->open();
+        return $this->render('checkout' , [
+            'session' => $session
+        ]);
     }
 
 

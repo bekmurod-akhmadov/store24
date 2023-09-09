@@ -49,9 +49,9 @@
                                             <h2 class="woocommerce-loop-product__title"><?=$item->name?></h2>
                                         </a>
                                         <div class="hover-area">
-                                            <a class="button add_to_cart_button" href="#" rel="nofollow">Savatga</a>
-                                            <a class="add-to-compare-link" href="#">Taqqoslash</a>
+                                            <a class="button add_to_cart_button add-to-cart" href="<?=\yii\helpers\Url::to(['/cart/add' , 'id' => $item->id])?>" id="<?=$item->id?>" data-id="<?=$item->id?>" >Savatga</a>                                            <a class="add-to-compare-link" href="#">Taqqoslash</a>
                                         </div>
+                                        <?php  ?>
                                     </div>
                                     <!-- /.product-outer -->
                                     <?php endforeach; ?>
