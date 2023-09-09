@@ -6,7 +6,7 @@
 <div class="sidebar-main sidebar-menu-one sidebar-expand-md sidebar-color">
     <div class="mobile-sidebar-header d-md-none">
         <div class="header-logo">
-            <a href="<?=\yii\helpers\Url::home()?>"><img src="/img/logo1.png" alt="logo"></a>
+            <a href="<?=\yii\helpers\Url::home()?>"> <?=  \yii\helpers\Html::img('img/logo1.png');?>
         </div>
     </div>
     <div class="sidebar-menu-content">

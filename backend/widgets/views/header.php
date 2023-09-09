@@ -3,7 +3,7 @@
     <div class="nav-bar-header-one">
         <div class="header-logo">
             <a href="<?=\yii\helpers\Url::home()?>">
-                <img src="/img/logo.png" alt="logo">
+                <?=  \yii\helpers\Html::img('img/logo.png');?>
             </a>
         </div>
         <div class="toggle-button sidebar-toggle">
@@ -46,7 +46,7 @@
                         <span>Admin</span>
                     </div>
                     <div class="admin-img">
-                        <img src="/img/figure/admin.jpg" alt="Admin">
+                        <?=  \yii\helpers\Html::img('img/figure/admin.jpg');?>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -79,7 +79,7 @@
                     <div class="item-content">
                         <div class="media">
                             <div class="item-img bg-skyblue author-online">
-                                <img src="/img/figure/student11.png" alt="img">
+                                <?=  \yii\helpers\Html::img('img/figure/student11.png');?>
                             </div>
                             <div class="media-body space-sm">
                                 <div class="item-title">
@@ -94,7 +94,7 @@
                         </div>
                         <div class="media">
                             <div class="item-img bg-yellow author-online">
-                                <img src="/img/figure/student12.png" alt="img">
+                            <?=  \yii\helpers\Html::img('img/figure/student12.png');?>
                             </div>
                             <div class="media-body space-sm">
                                 <div class="item-title">
@@ -109,7 +109,7 @@
                         </div>
                         <div class="media">
                             <div class="item-img bg-pink">
-                                <img src="/img/figure/student13.png" alt="img">
+                            <?=  \yii\helpers\Html::img('img/figure/student13.png');?>
                             </div>
                             <div class="media-body space-sm">
                                 <div class="item-title">
@@ -124,7 +124,7 @@
                         </div>
                         <div class="media">
                             <div class="item-img bg-violet-blue">
-                                <img src="/img/figure/student11.png" alt="img">
+                            <?=  \yii\helpers\Html::img('img/figure/student11.png');?>
                             </div>
                             <div class="media-body space-sm">
                                 <div class="item-title">
