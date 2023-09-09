@@ -26,15 +26,44 @@
                 </ul>
             </li>
 
-            <li class="nav-item sidebar-nav-item <?=in_array($action , ['order' , 'customer']) ? 'active' : ''?>">
+            <li class="nav-item sidebar-nav-item <?=in_array($action , ['order' , 'order-datail']) ? 'active' : ''?>">
                 <a href="#" class="nav-link"><i class="fas fa-tags"></i><span>Buyurtmalar</span></a>
-                <ul class="nav sub-group-menu menu-open" style="display:<?=in_array($action , ['order' , 'customer']) ? 'block' : 'none'?>">
+                <ul class="nav sub-group-menu menu-open" style="display:<?=in_array($action , ['order' , 'order-detail']) ? 'block' : 'none'?>">
                     <li class="nav-item">
                         <a href="<?=\yii\helpers\Url::to(['order/index'])?>" class="nav-link"><i class="fas fa-angle-right"></i>Buyurtmalar tarixi</a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="<?=\yii\helpers\Url::to(['customer/index'])?>" class="nav-link"><i class="fas fa-angle-right"></i>Mijozlar</a>
+<!--                        <a href="--><?//=\yii\helpers\Url::to(['customer/index'])?><!--" class="nav-link"><i class="fas fa-angle-right"></i>Bu</a>-->
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item sidebar-nav-item <?=in_array($action , ['customer' , 'customer-address' , 'customer-user']) ? 'active' : ''?>">
+                <a href="#" class="nav-link"><i class="fas fa-users"></i><span>Foydalanuvchilar</span></a>
+                <ul class="nav sub-group-menu menu-open" style="display:<?=in_array($action , ['customer' , 'customer-address' , 'customer-user']) ? 'block' : 'none'?>">
+                    <li class="nav-item">
+                        <a href="<?=\yii\helpers\Url::to(['customer/index'])?>" class="nav-link"><i class="fas fa-angle-right"></i>Foydalanuvchilar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?=\yii\helpers\Url::to(['customer-address/index'])?>" class="nav-link"><i class="fas fa-angle-right"></i>Foydalanuvchi manzili</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?=\yii\helpers\Url::to(['customer-user/index'])?>" class="nav-link"><i class="fas fa-angle-right"></i>Login parollar</a>
+                    </li>
+                </ul>
+            </li>
+
+
+
+            <li class="nav-item sidebar-nav-item <?=in_array($action , ['region' , 'district']) ? 'active' : ''?>">
+                <a href="#" class="nav-link"><i class="fas fa-map-marker"></i><span>Hududlar</span></a>
+                <ul class="nav sub-group-menu menu-open" style="display:<?=in_array($action , ['region' , 'district']) ? 'block' : 'none'?>">
+                    <li class="nav-item">
+                        <a href="<?=\yii\helpers\Url::to(['region/index'])?>" class="nav-link"><i class="fas fa-angle-right"></i>Viloyatlar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?=\yii\helpers\Url::to(['district/index'])?>" class="nav-link"><i class="fas fa-angle-right"></i>Tumanlar</a>
                     </li>
                 </ul>
             </li>

@@ -1,5 +1,5 @@
 <li>
-    <div class="widget woocommerce widget_shopping_cart" id="widget_shopping_cart">
+    <div class="widget woocommerce widget_shopping_cart widget_shopping_cart-1" id="widget_shopping_cart">
         <div class="widget_shopping_cart_content">
 
             <ul class="woocommerce-mini-cart cart_list product_list_widget ">
@@ -10,11 +10,11 @@
                         $image = \common\components\StaticFunctions::getImage($product , 'product' , 'image');
                         ?>
                         <li class="woocommerce-mini-cart-item mini_cart_item"   >
-                            <a href="<?=\yii\helpers\Url::to(['/cart/show' , 'id' => $product->id])?>" id="<?=$product->id?>" data-id="<?=$product->id?>" class="remove" aria-label="Remove this item" data-product_id="65" data-product_sku="">×</a>
+                            <a href="<?=\yii\helpers\Url::to(['/cart/show' , 'id' => $product->id])?>" id="<?=$product->id?>" data-id="<?=$product->id?>" data-count="<?=$cart['qty']?>" class="remove" aria-label="Remove this item" data-product_id="65" data-product_sku="">×</a>
                             <a href="<?=\yii\helpers\Url::to(['/product/view' , 'slug' => $product->slug])?>">
                                 <img src="<?=$image?>" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt=""><?=$product->name?>
                             </a>
-                            <span class="quantity"><?=$cart['qty']?> ×
+                            <span class="quantity"><span><?=$cart['qty']?></span> ×
                                                     <span class="woocommerce-Price-amount amount">
                                                         <span class="woocommerce-Price-currencySymbol"><?=number_format($product->discount > 0 ? $product->discount : $product->price , '0',' ' , ' ')?></span> so'm
                                                     </span>
