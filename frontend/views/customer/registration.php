@@ -28,7 +28,7 @@ use yii\helpers\Html;
                         <?= $form->field($model, 'confirmation_code')->passwordInput()->label(false) ?>
 
                         <div class="my-1 mx-0" style="color:#999;">
-                            Agar oldin ro'yhatdan o'tgan bolsangiz login parolingiz bilan <a style="text-decoration:underline;color:blue" href="<?=\yii\helpers\Url::to(['/customer/registration'])?>">kiring</a>.
+                            Agar oldin ro'yhatdan o'tgan bolsangiz login parolingiz bilan <a style="text-decoration:underline;color:blue" href="<?=\yii\helpers\Url::to(['/customer/login'])?>">kiring</a>.
                         </div>
 
                         <div class="form-group">

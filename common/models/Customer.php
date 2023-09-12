@@ -39,9 +39,10 @@ class Customer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['customer_user_id', 'first_name', 'last_name', 'middle_name', 'gender', 'birth_date', 'registered_at', 'status'], 'required'],
+            [['customer_user_id', 'first_name', 'last_name', 'middle_name', 'gender', 'birth_date', 'registered_at'], 'required'],
             [['customer_user_id', 'status'], 'integer'],
-            [['birth_date', 'registered_at'], 'safe'],
+            [['birth_date', 'registered_at' , 'status'], 'safe'],
+            ['status' , 'default' , 'value' => 0],
             [['first_name', 'last_name'], 'string', 'max' => 100],
             [['middle_name'], 'string', 'max' => 200],
             [['gender'], 'string', 'max' => 20],
@@ -106,5 +107,16 @@ class Customer extends \yii\db\ActiveRecord
     {
         return $this->hasMany(PaymentMethod::class, ['customer_id' => 'id']);
     }
+
+    public function getDistricts()
+    {
+        return Region::find()->all();
+    }
+
+    public function getAdress()
+    {
+        return new CustomerAddress();
+    }
+
 
 }

@@ -3,16 +3,19 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "order".
  *
  * @property int $id
  * @property int|null $customer_id
- * @property string $ordered_at
+ * @property string|null $ordered_at
  * @property int|null $customer_address_id
- * @property int $status
- * @property string $required_at
+ * @property int|null $status
+ * @property string|null $required_at
  * @property string|null $updated_at
  *
  * @property Customer $customer
@@ -36,13 +39,25 @@ class Order extends \yii\db\ActiveRecord
     {
         return [
             [['customer_id', 'customer_address_id', 'status'], 'integer'],
-            [['ordered_at', 'status', 'required_at'], 'required'],
             [['ordered_at', 'required_at', 'updated_at'], 'safe'],
             [['customer_address_id'], 'exist', 'skipOnError' => true, 'targetClass' => CustomerAddress::class, 'targetAttribute' => ['customer_address_id' => 'id']],
             [['customer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Customer::class, 'targetAttribute' => ['customer_id' => 'id']],
         ];
     }
 
+    public function behaviors(){
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['ordered_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+                // если вместо метки времени UNIX используется datetime:
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
     /**
      * {@inheritdoc}
      */

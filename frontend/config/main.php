@@ -43,13 +43,16 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'cart/get-districts' => 'cart/get-districts',
             ],
         ],
 
         'assetManager' => [
+
             'bundles' => [
                 'yii\web\JqueryAsset' => [
                     'js'=>[]
+
                 ],
                 'yii\bootstrap\BootstrapPluginAsset' => [
                     'js'=>[]
