@@ -5,8 +5,16 @@ namespace frontend\controllers;
 
 
 use common\models\Cart;
+use common\models\Customer;
+use common\models\CustomerAddress;
+use common\models\CustomerUser;
+use common\models\District;
+use common\models\Order;
+use common\models\OrderDetail;
 use common\models\Product;
+use frontend\models\LoginForm;
 use Yii;
+use yii\helpers\Json;
 use yii\web\Controller;
 
 
@@ -94,9 +102,79 @@ class CartController extends Controller
     {
         $session = Yii::$app->session;
         $session->open();
+
+        $login = new LoginForm();
+        if(Yii::$app->request->isPost && $login->load(Yii::$app->request->post())){
+            if ($login->validate()){
+                $login->login();
+                return $this->refresh();
+            }
+        }
+        $userId = Yii::$app->user->getId();
+        $user = CustomerUser::findOne($userId);
+        $customer = new Customer();
+        $customerAdress = new CustomerAddress();
+        if (Yii::$app->request->isPost && $customer->load(Yii::$app->request->post()) && $customerAdress->load(Yii::$app->request->post())){
+            $customer->birth_date = date('Y-m-d' , strtotime($customer->birth_date));
+            $customer->registered_at = date('Y-m-d');
+            $customer->customer_user_id = $user->customers[0]['id'];
+            $customer->status = 1;
+            $customer->save();
+            $customerAdress->customer_id = $customer->id;
+            $customerAdress->save();
+            if ($customerAdress->save() && $customer->save()){
+                $session = Yii::$app->session;
+                $session->open();
+                $cart = $session['cart'];
+                $order = new Order();
+                $order->customer_id = $customer->id;
+                $order->customer_address_id = $customerAdress->id;
+                $order->save();
+                if($order->save()){
+                    foreach ($cart as $key => $item){
+                        $orderDetail = new OrderDetail();
+                        $orderDetail->order_id = $order->id;
+                        $orderDetail->product_id = $key;
+                        $orderDetail->count = $item['qty'];
+                        $orderDetail->save();
+                    }
+                    unset($session['cart']);
+                    unset($session['cart.sum']);
+                    unset($session['cart.qty']);
+                    return $this->redirect('success');
+
+                }
+
+            }
+
+        }
+
         return $this->render('checkout' , [
-            'session' => $session
+            'session' => $session,
+            'user' => $user,
+            'login' => $login,
+            'customerAdress' => $customerAdress,
+            'customer' => $customer,
         ]);
+    }
+
+    public function actionSuccess()
+    {
+        return $this->render('success');
+    }
+
+    public function actionGetDistricts($region_id)
+    {
+        $districts = District::find()
+            ->where(['region_id' => $region_id])
+            ->all();
+
+        $options = [];
+        foreach ($districts as $district) {
+            $options[$district->id] = $district->name_uz;
+        }
+
+        return Json::encode($options);
     }
 
 

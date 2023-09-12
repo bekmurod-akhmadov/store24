@@ -1,4 +1,4 @@
-@charset "UTF-8";
+.required@charset "UTF-8";
 /*!
 Template Name:  Techmarket HTML
 Template URI:   https://transvelo.github.io/techmarket-html/
@@ -22922,7 +22922,9 @@ label[for="rememberme"] {
 
 .required {
   border-bottom: 0 !important;
-  color: red; }
+  color: red;
+  width:100%;
+}
 
 .col2-set {
   display: flex;

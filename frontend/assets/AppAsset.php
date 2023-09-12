@@ -37,6 +37,7 @@ class AppAsset extends AssetBundle
             "/js/jquery.easing.min.js",
             "/js/scrollup.min.js",
             "/js/jquery.waypoints.min.js",
+            "https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js",
             "/js/waypoints-sticky.min.js",
             "/js/pace.min.js",
             "/js/slick.min.js",
