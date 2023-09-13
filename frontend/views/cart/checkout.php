@@ -1,8 +1,12 @@
 <?php use kartik\select2\Select2;
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
+$region_id = !empty($model->customerAddress->region_id) ? $model->customerAddress->region_id : NULL;
+$district_id = !empty($model->customerAddress->district_id) ? $model->customerAddress->district_id : NULL;
 
-$this->title = "Rasmiylashtirish"?>
+$this->title = "Rasmiylashtirish";
+?>
+<?php if (!empty($session['cart'])): ?>
 <div class="type-page hentry">
     <div class="entry-content">
         <div class="woocommerce">
@@ -74,6 +78,7 @@ $this->title = "Rasmiylashtirish"?>
                                             <p class="form-row form-row-wide" style="width:100%;margin-bottom: none;">
                                                 <?=$customerForm->field($customer , 'first_name')->textInput([
                                                     'class' => 'input-text w-100',
+                                                    'value' => !empty($model->first_name) ? $model->first_name : '',
                                                     'options' => [
                                                         'id' => 'billing_company'
                                                     ]
@@ -84,38 +89,8 @@ $this->title = "Rasmiylashtirish"?>
                                             <p class="form-row form-row-wide w-100" style="width:100%;margin-bottom: none;">
                                                 <?=$customerForm->field($customer , 'last_name')->textInput([
                                                     'class' => 'input-text w-100',
+                                                    'value' => !empty($model->last_name) ? $model->last_name : '',
                                                 ])?>
-                                            </p>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <p class="form-row form-row-wide w-100" style="width:100%;margin-bottom: none;">
-                                                <?=$customerForm->field($customer , 'middle_name')->textInput([
-                                                    'class' => 'input-text w-100',
-                                                ])?>
-                                            </p>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <p class="form-row form-row-wide w-100" style="width:100%;margin-bottom: none;">
-                                                <?=$customerForm->field($customer , 'gender')->dropDownList(
-                                                    Yii::$app->params['gender'],
-                                                    [
-                                                        'class' => 'country_to_state country_select select2-hidden-accessible w-100'
-                                                    ]
-                                                )?>
-                                            </p>
-                                        </div>
-
-                                        <div class="col-lg-6">
-                                            <p class="form-row form-row-wide w-100" style="width:100%;margin-bottom: none;">
-                                                <?=$customerForm->field($customer , 'birth_date')->textInput([
-                                                    'class' => 'input-text w-100',
-                                                    'type' => 'date'
-                                                ])?>
-                                            </p>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <p class="form-row form-row-wide w-100" style="width:100%;margin-bottom: none;">
-                                                <?=$customerForm->field($customer->adress, 'address')->textInput()?>
                                             </p>
                                         </div>
                                         <div class="col-lg-6">
@@ -123,6 +98,9 @@ $this->title = "Rasmiylashtirish"?>
                                                 <?=$customerForm->field($customerAdress , 'region_id')->dropDownList(
                                                     \yii\helpers\ArrayHelper::map($customer->districts , 'id' , 'name_uz'),
                                                     [
+//                                                        'options'  => [
+//                                                            "$region_id" => ['selected' => 'selected'],
+//                                                        ],
                                                         'prompt' => 'Viloyat...',
                                                         'class' => 'country_to_state country_select select2-hidden-accessible w-100',
                                                         'onchange' => '
@@ -146,6 +124,7 @@ $this->title = "Rasmiylashtirish"?>
 
                                                 <?=$customerForm->field($customer->adress , 'district_id')->dropDownList(
                                                     [],
+
                                                     [
                                                         'prompt' => 'Tuman...',
                                                         'class' => 'country_to_state country_select select2-hidden-accessible w-100',
@@ -155,13 +134,26 @@ $this->title = "Rasmiylashtirish"?>
                                         </div>
                                         <div class="col-lg-6">
                                             <p class="form-row form-row-wide w-100" style="width:100%;margin-bottom: none;">
-                                                <?=$customerForm->field($customer->adress, 'zipcode')->textInput()?>
+                                                <?=$customerForm->field($customer->adress, 'address')->textInput([
+                                                        'value' => !empty($model->customerAddress->address) ? $model->customerAddress->address : ''
+                                                ])?>
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p class="form-row form-row-wide w-100" style="width:100%;margin-bottom: none;">
+                                                <?=$customerForm->field($customer->adress, 'zipcode')->textInput([
+                                                    'value' => !empty($model->customerAddress->zipcode) ? $model->customerAddress->zipcode : ''
+                                                ])?>
                                             </p>
                                         </div>
                                         <div class="col-lg-6">
                                             <p class="form-row form-row-wide w-100" style="width:100%;margin-bottom: none;">
                                                 <?=$customerForm->field($customer->adress, 'phone_number')->widget(\yii\widgets\MaskedInput::className() , [
                                                     'mask' => '99 999 99 99',
+                                                    'options' => [
+                                                        'value' => !empty($model->customerAddress->phone_number) ? $model->customerAddress->phone_number : '',
+                                                    ],
+
                                                 ])?>
                                             </p>
                                         </div>
@@ -184,87 +176,51 @@ $this->title = "Rasmiylashtirish"?>
                             </div>
                             <!-- .woocommerce-billing-fields__field-wrapper-outer -->
                         </div>
-                        <!-- .woocommerce-billing-fields -->
-                        <div class="woocommerce-account-fields">
 
-                            <div class="create-account collapse" id="createLogin">
-                                <p data-priority="" id="account_password_field" class="form-row validate-required woocommerce-invalid woocommerce-invalid-required-field">
-                                    <label class="" for="account_password">Account password
-                                        <abbr title="required" class="required">*</abbr>
-                                    </label>
-                                    <input type="password" value="" placeholder="Password" id="account_password" name="account_password" class="input-text ">
-                                </p>
-                                <div class="clear"></div>
-                            </div>
-                        </div>
-                        <!-- .woocommerce-account-fields -->
                     </div>
 
                 </div>
                 <!-- .col2-set -->
-                <h3 id="order_review_heading">Your order</h3>
+                <h3 id="order_review_heading">Sizning tovarlaringiz</h3>
                 <div class="woocommerce-checkout-review-order" id="order_review">
                     <div class="order-review-wrapper">
-                        <h3 class="order_review_heading">Your Order</h3>
+                        <h3 class="order_review_heading">Sizning tovarlaringiz</h3>
                         <table class="shop_table woocommerce-checkout-review-order-table">
                             <thead>
                             <tr>
-                                <th class="product-name">Product</th>
-                                <th class="product-total">Total</th>
+                                <th class="product-name">Tovarlar</th>
+                                <th class="product-total">Summa</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="cart_item">
-                                <td class="product-name">
-                                    <strong class="product-quantity">1 ×</strong> 55" KU6470 6 Series UHD Crystal Colour HDR Smart TV&nbsp;
-                                </td>
-                                <td class="product-total">
-                                                                        <span class="woocommerce-Price-amount amount">
-                                                                            <span class="woocommerce-Price-currencySymbol">£</span>627.99</span>
-                                </td>
-                            </tr>
-                            <tr class="cart_item">
-                                <td class="product-name">
-                                    <strong class="product-quantity">1 ×</strong> 4K Action Cam GPS&nbsp;
-                                </td>
-                                <td class="product-total">
-                                                                        <span class="woocommerce-Price-amount amount">
-                                                                            <span class="woocommerce-Price-currencySymbol">£</span>219.00</span>
-                                </td>
-                            </tr>
-                            <tr class="cart_item">
-                                <td class="product-name">
-                                    <strong class="product-quantity">1 ×</strong> Bluetooth on-ear PureBass Headphones&nbsp;
-                                </td>
-                                <td class="product-total">
-                                                                        <span class="woocommerce-Price-amount amount">
-                                                                            <span class="woocommerce-Price-currencySymbol">£</span>99.95</span>
-                                </td>
-                            </tr>
-                            <tr class="cart_item">
-                                <td class="product-name">
-                                    <strong class="product-quantity">1 ×</strong> Band Fitbit Flex&nbsp;
-                                </td>
-                                <td class="product-total">
-                                                                        <span class="woocommerce-Price-amount amount">
-                                                                            <span class="woocommerce-Price-currencySymbol">£</span>17.00</span>
-                                </td>
-                            </tr>
+                                <?php if (!empty($session['cart'])): ?>
+                                    <?php foreach ($session['cart'] as $key => $sessionItem): ?>
+                                        <tr class="cart_item">
+                                            <td class="product-name">
+                                                <strong class="product-quantity"><?=$sessionItem['qty']?> ×</strong><?=$sessionItem['name']?>
+                                            </td>
+                                            <td class="product-total">
+                                                <span class="woocommerce-Price-amount amount">
+                                                    <span class="woocommerce-Price-currencySymbol"><?=number_format($sessionItem['price'] * $sessionItem['qty'] , '0' , ' ' , ' ')?></span> so'm</span>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </tbody>
                             <tfoot>
-                            <tr class="cart-subtotal">
-                                <th>Subtotal</th>
-                                <td>
-                                                                        <span class="woocommerce-Price-amount amount">
-                                                                            <span class="woocommerce-Price-currencySymbol">£</span>963.94</span>
-                                </td>
-                            </tr>
+                                <tr class="cart-subtotal">
+                                    <th>Jami summa</th>
+                                    <td>
+                                        <span class="woocommerce-Price-amount amount">
+                                            <span class="woocommerce-Price-currencySymbol"><?=number_format($session['cart.sum'] , '0' , ' ' , ' ')?></span> so'm</span>
+                                    </td>
+                                </tr>
                             <tr class="order-total">
-                                <th>Total</th>
+                                <th>Jami tovarlar</th>
                                 <td>
                                     <strong>
-                                                                            <span class="woocommerce-Price-amount amount">
-                                                                                <span class="woocommerce-Price-currencySymbol">£</span>963.94</span>
+                                        <span class="woocommerce-Price-amount amount">
+                                            <span class="woocommerce-Price-currencySymbol"><?=$session['cart.qty']?></span> ta</span>
                                     </strong>
                                 </td>
                             </tr>
@@ -272,32 +228,7 @@ $this->title = "Rasmiylashtirish"?>
                         </table>
                         <!-- /.woocommerce-checkout-review-order-table -->
                         <div class="woocommerce-checkout-payment" id="payment">
-                            <ul class="wc_payment_methods payment_methods methods">
-                                <li class="wc_payment_method payment_method_bacs">
-                                    <input type="radio" data-order_button_text="" checked="checked" value="bacs" name="payment_method" class="input-radio" id="payment_method_bacs">
-                                    <label for="payment_method_bacs">Direct bank transfer</label>
-
-                                </li>
-                                <li class="wc_payment_method payment_method_cheque">
-                                    <input type="radio" data-order_button_text="" value="cheque" name="payment_method" class="input-radio" id="payment_method_cheque">
-                                    <label for="payment_method_cheque">Check payments </label>
-
-                                </li>
-                                <li class="wc_payment_method payment_method_cod">
-                                    <input type="radio" data-order_button_text="" value="cod" name="payment_method" class="input-radio" id="payment_method_cod">
-                                    <label for="payment_method_cod">Cash on delivery </label>
-
-                                </li>
-                            </ul>
                             <div class="form-row place-order">
-                                <p class="form-row terms wc-terms-and-conditions woocommerce-validated">
-                                    <label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
-                                        <input type="checkbox" id="terms" name="terms" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox">
-                                        <span>I’ve read and accept the <a class="woocommerce-terms-and-conditions-link" href="terms-and-conditions.html">terms &amp; conditions</a></span>
-                                        <span class="required">*</span>
-                                    </label>
-                                    <input type="hidden" value="1" name="terms-field">
-                                </p>
                                 <?=Html::submitButton('Rasmiylashtirish' , ['class' => 'button wc-forward text-center'])?>
                             </div>
                         </div>
@@ -315,4 +246,9 @@ $this->title = "Rasmiylashtirish"?>
     </div>
     <!-- .entry-content -->
 </div>
-<!-- #post-## -->
+<?php else: ?>
+    <div class="container text-center">
+        <h2>Siz hech narsa xarid qilmadingiz!</h2>
+        <a href="<?=\yii\helpers\Url::to(['/product/index'])?>" class="button wc-forward text-light">Xarid qilishga o'tish</a>
+    </div>
+<?php endif; ?>

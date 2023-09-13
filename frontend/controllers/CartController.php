@@ -12,6 +12,7 @@ use common\models\District;
 use common\models\Order;
 use common\models\OrderDetail;
 use common\models\Product;
+use common\models\TelegramNotificator;
 use frontend\models\LoginForm;
 use Yii;
 use yii\helpers\Json;
@@ -100,9 +101,11 @@ class CartController extends Controller
 
     public function actionCheckout()
     {
+        $userId = Yii::$app->user->getId();
+        $user = CustomerUser::findOne($userId);
         $session = Yii::$app->session;
         $session->open();
-
+        $model = Customer::findOne(['customer_user_id' => $userId]);
         $login = new LoginForm();
         if(Yii::$app->request->isPost && $login->load(Yii::$app->request->post())){
             if ($login->validate()){
@@ -110,25 +113,25 @@ class CartController extends Controller
                 return $this->refresh();
             }
         }
-        $userId = Yii::$app->user->getId();
-        $user = CustomerUser::findOne($userId);
         $customer = new Customer();
         $customerAdress = new CustomerAddress();
         if (Yii::$app->request->isPost && $customer->load(Yii::$app->request->post()) && $customerAdress->load(Yii::$app->request->post())){
-            $customer->birth_date = date('Y-m-d' , strtotime($customer->birth_date));
-            $customer->registered_at = date('Y-m-d');
-            $customer->customer_user_id = $user->customers[0]['id'];
-            $customer->status = 1;
-            $customer->save();
-            $customerAdress->customer_id = $customer->id;
+//            $customer->birth_date = date('Y-m-d' , strtotime($customer->birth_date));
+//            $customer->registered_at = date('Y-m-d');
+//            $customer->customer_user_id = $user->customers[0]['id'];
+//            $customer->status = 1;
+//            $customer->save();
+            $customerAdress->customer_id = $model->id;
             $customerAdress->save();
-            if ($customerAdress->save() && $customer->save()){
-                $session = Yii::$app->session;
+            if ($customerAdress->save()){
                 $session->open();
                 $cart = $session['cart'];
                 $order = new Order();
-                $order->customer_id = $customer->id;
+                $order->customer_id = $model->id;
                 $order->customer_address_id = $customerAdress->id;
+                $order->sum = $session['cart.sum'];
+                $order->qty = $session['cart.qty'];
+                $order->ordered_at = date('Y-m-d H:i:s');
                 $order->save();
                 if($order->save()){
                     foreach ($cart as $key => $item){
@@ -138,6 +141,8 @@ class CartController extends Controller
                         $orderDetail->count = $item['qty'];
                         $orderDetail->save();
                     }
+//                    $sendOrder = new TelegramNotificator();
+//                    $sendOrder->sendOrderNotification($order);
                     unset($session['cart']);
                     unset($session['cart.sum']);
                     unset($session['cart.qty']);
@@ -155,6 +160,7 @@ class CartController extends Controller
             'login' => $login,
             'customerAdress' => $customerAdress,
             'customer' => $customer,
+            'model' => $model
         ]);
     }
 

@@ -3,9 +3,6 @@
 namespace common\models;
 
 use Yii;
-use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
-use yii\db\Expression;
 
 /**
  * This is the model class for table "order".
@@ -17,6 +14,8 @@ use yii\db\Expression;
  * @property int|null $status
  * @property string|null $required_at
  * @property string|null $updated_at
+ * @property float|null $sum
+ * @property float|null $qty
  *
  * @property Customer $customer
  * @property CustomerAddress $customerAddress
@@ -40,24 +39,12 @@ class Order extends \yii\db\ActiveRecord
         return [
             [['customer_id', 'customer_address_id', 'status'], 'integer'],
             [['ordered_at', 'required_at', 'updated_at'], 'safe'],
+            [['sum', 'qty'], 'number'],
             [['customer_address_id'], 'exist', 'skipOnError' => true, 'targetClass' => CustomerAddress::class, 'targetAttribute' => ['customer_address_id' => 'id']],
             [['customer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Customer::class, 'targetAttribute' => ['customer_id' => 'id']],
         ];
     }
 
-    public function behaviors(){
-        return [
-            [
-                'class' => TimestampBehavior::class,
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['ordered_at', 'updated_at'],
-                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
-                ],
-                // если вместо метки времени UNIX используется datetime:
-                'value' => new Expression('NOW()'),
-            ],
-        ];
-    }
     /**
      * {@inheritdoc}
      */
@@ -71,6 +58,8 @@ class Order extends \yii\db\ActiveRecord
             'status' => 'Status',
             'required_at' => 'Required At',
             'updated_at' => 'Updated At',
+            'sum' => 'Sum',
+            'qty' => 'Qty',
         ];
     }
 
@@ -102,5 +91,10 @@ class Order extends \yii\db\ActiveRecord
     public function getOrderDetails()
     {
         return $this->hasMany(OrderDetail::class, ['order_id' => 'id']);
+    }
+
+    public function getOrderCount()
+    {
+        return $this->hasMany(OrderDetail::class, ['order_id' => 'id'])->count();
     }
 }

@@ -61,6 +61,11 @@ class CustomerUser extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->hasMany(Customer::class, ['customer_user_id' => 'id']);
     }
 
+    public function getCustomerOrders()
+    {
+        return $this->hasMany(Order::class , ['customer_id' => 'id'])->via('customers');
+    }
+
     public static function findByUsername($username){
         foreach (self::find()->all() as $user){
             if(strcasecmp($user->username,$username) === 0){

@@ -42,7 +42,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'cart/get-districts' => 'cart/get-districts',
+                'cart/get-districts' => 'customer/get-districts',
             ],
         ],
 

@@ -122,10 +122,10 @@
                     <form enctype="multipart/form-data" method="post" class="cart">
                         <div class="quantity">
                             <label for="quantity-input">Soni</label>
-                            <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" id="quantity-input">
+                            <input  type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" id="quantity-input">
                         </div>
                         <!-- .quantity -->
-                        <button class="single_add_to_cart_button button alt" value="185" name="add-to-cart" type="submit">Savatga</button>
+                        <a href="<?=\yii\helpers\Url::to(['/cart/add' , 'id' => $model->id])?>" data-id="<?=$model->id?>" id="<?=$model->id?>" class="single_add_to_cart_button button alt add-to-cart " value="185" name="add-to-cart" type="submit">Savatga</a>
                     </form>
                     <!-- .cart -->
                     <a class="add-to-compare-link" href="compare.html">Taqqoslash</a>

@@ -33,3 +33,12 @@
 .site-header .widget_shopping_cart_content .product_list_widget .mini_cart_item .profile_item:last-child{
     margin-bottom: 0;
 }
+
+.image_block{
+    display:flex;
+    justify-content:center;
+}
+
+.image_block img{
+    width:50%
+}

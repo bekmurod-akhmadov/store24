@@ -26,7 +26,7 @@ class AppAsset2 extends AssetBundle
     ];
     public $js = [
         "js/modernizr-3.6.0.min.js",
-//        "js/jquery-3.3.1.min.js",
+        "js/jquery-3.3.1.min.js",
         "/js/plugins.js",
         "/js/popper.min.js",
         "/js/bootstrap.min.js",
@@ -41,7 +41,7 @@ class AppAsset2 extends AssetBundle
         "/js/cutom.js",
     ];
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap5\BootstrapAsset',
+//        'yii\web\YiiAsset',
+//        'yii\bootstrap5\BootstrapAsset',
     ];
 }
