@@ -12,6 +12,13 @@ use yii\helpers\Html;
 </nav>
 <div class="type-page hentry">
     <div class="entry-content">
+
+            <?php if (!empty(Yii::$app->session->hasFlash('success'))): ?>
+                <div class="alert alert-success flesh_success">
+                    <?=Yii::$app->session->getFlash('success' )?>
+                </div>
+            <?php endif; ?>
+
         <div class="woocommerce d-flex justify-content-center">
             <div class="col-lg-5">
                 <div class="card">
@@ -47,3 +54,9 @@ use yii\helpers\Html;
     <!-- .entry-content -->
 </div>
 <!-- .hentry -->
+<script>
+    let flash = document.querySelector(".flesh_success");
+    setTimeout(function() {
+        flash.style.display = 'none';
+    }, 2000);
+</script>

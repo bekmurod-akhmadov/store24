@@ -39,7 +39,7 @@ class Customer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['customer_user_id', 'first_name', 'last_name', 'middle_name', 'gender', 'birth_date', 'registered_at'], 'required'],
+            [['customer_user_id', 'first_name', 'last_name'], 'required'],
             [['customer_user_id', 'status'], 'integer'],
             [['birth_date', 'registered_at' , 'status'], 'safe'],
             ['status' , 'default' , 'value' => 0],
@@ -116,6 +116,11 @@ class Customer extends \yii\db\ActiveRecord
     public function getAdress()
     {
         return new CustomerAddress();
+    }
+
+    public function getCustomerAddress()
+    {
+        return $this->hasOne(CustomerAddress::className() , ['customer_id' => 'id'])->one();
     }
 
 

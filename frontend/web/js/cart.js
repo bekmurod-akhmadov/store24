@@ -21,12 +21,14 @@ let count =  $("#cart-count").data('quantity');
 
 $(".add-to-cart").on("click" , function (e) {
     let id = $(this).data('id');
+    let qty = $("#quantity-input").val();
+    console.log(qty);
     count++;
     e.preventDefault();
 
     $.ajax({
         method : 'GET',
-        data : {id:id},
+        data : {id:id,qty:qty},
         url : '/cart/add',
         success : function () {
             showNotification();
