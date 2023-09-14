@@ -13,4 +13,4 @@ $this->title = 'My Store';
 <?=\frontend\widgets\ProductsByCat::widget()?>
 <?=\frontend\widgets\NewProduct::widget()?>
 <?=\frontend\widgets\SaleProducts::widget()?>
-<?=\frontend\widgets\Brands::widget()?>
+<?//=\frontend\widgets\Brands::widget()?>

@@ -1,32 +1,6 @@
 (function ($) {
   "use strict";
 
-  //Input mask for inputs
-  // $(document).ready( function() {
-  //   $("#product-price").inputmask("999 999 999");
-  // });
-  // Change image
-  $('.upload').change(function(){
-    var input = this;
-    var url = $(this).val();
-    var targetImage = $(this).parent().parent().find('img');
-    var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
-    if (input.files && input.files[0]&& (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg"))
-    {
-      var reader = new FileReader();
-
-      reader.onload = function (e) {
-        targetImage.attr('src', e.target.result);
-      }
-      reader.readAsDataURL(input.files[0]);
-    }
-    else
-    {
-      alert("Faqat rasm yuklashingiz mumkin!");
-      targetImage.attr('src', '/uploads/no-image.png');
-    }
-  });
-
   /*-------------------------------------
       Sidebar Toggle Menu
     -------------------------------------*/
@@ -206,7 +180,7 @@
     if ($("#earning-line-chart").length) {
 
       var lineChartData = {
-        labels: ["", "Dush", "Sesh", "Chor", "Pay", "Jum", "Shan", "", ""],
+        labels: ["", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", ""],
         datasets: [{
             data: [0, 5e4, 1e4, 5e4, 14e3, 7e4, 5e4, 75e3, 5e4],
             backgroundColor: '#ff0000',
@@ -421,13 +395,11 @@
       -------------------------------------*/
     if ($("#student-doughnut-chart").length) {
 
-      let girls = $("#girls").data()['id'];
-      let boys = $("#boys").data()['id'];
       var doughnutChartData = {
-        labels: ["Qiz bolalar", "O'g'il bolalar"],
+        labels: ["Female Students", "Male Students"],
         datasets: [{
           backgroundColor: ["#304ffe", "#ffa601"],
-          data: [girls, boys],
+          data: [45000, 105000],
           label: "Total Students"
         }, ]
       };
@@ -489,11 +461,6 @@
         ]
       });
     }
-
-    $(document).ready( function() {
-      $("[type=tel]").inputmask("+999 99 999 99 99");
-    });
-
   });
 
 })(jQuery);

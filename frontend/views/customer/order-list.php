@@ -27,6 +27,7 @@
                             <th class="product-price">Buyurtma sanasi</th>
                             <th class="product-quantity">Tovarlar soni</th>
                             <th class="product-subtotal">Jami</th>
+                            <th class="product-subtotal">Status</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -60,6 +61,13 @@
                                             <span class="woocommerce-Price-currencySymbol"><?=number_format($model->sum , '0' , ' ' , ' ')?></span> so'm
                                         </span>
 
+                                    </td>
+                                    <td>
+                                        <?php if ($model->status == 0): ?>
+                                        <span style="color:red;" class="wishlist-in-stock">Yig'ilyapti</span>
+                                        <?php else: ?>
+                                            <span class="wishlist-in-stock">Buyurtma yetkazildi</span>
+                                        <?php endif; ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

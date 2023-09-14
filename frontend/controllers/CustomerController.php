@@ -99,6 +99,8 @@ class CustomerController extends Controller
 
     public function actionSettings()
     {
+        $model =
+
         $this->layout = 'profile';
         return $this->render('settings');
     }
